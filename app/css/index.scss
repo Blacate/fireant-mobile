@@ -1,0 +1,277 @@
+$box-margin:1rem;
+body {
+    background: #F5F5F5;
+    font-size: 10px;
+}
+
+//复用样式
+p {
+    display: block;
+}
+
+span {
+    display: inline;
+}
+
+.scoll_content {
+    width: 100%;
+    min-height: 100%;
+}
+
+
+/*base*/
+
+.height_90 {
+    height: 90px;
+}
+
+.item_shaow {
+    box-shadow: 0 2px 4px 0 rgba(71, 137, 254, 0.10);
+}
+
+.border_raduis {
+    border-radius: 4px;
+}
+
+
+/*background-color*/
+
+.gray_bgc {
+    background-color: #F5F5F5;
+}
+
+.white_bgc {
+    background-color: white;
+}
+
+
+/*border*/
+
+.border_none {
+    border: 0px;
+}
+
+
+/*list*/
+
+.list_margin {
+    left: 0;
+}
+
+.list_margin div {
+    margin: 4%;
+    width: 92%;
+}
+
+.list_item {
+    max-width: 92%;
+    margin: 3% 4%;
+    padding: 4% 3%;
+    position: relative;
+}
+
+.nav_title {
+    background: #4889FE;
+    height: 2.7rem;
+    margin-bottom: 7%;
+    width: 100%;
+    position: relative;
+    img {
+        width: 2rem;
+        position: absolute;
+        top: 15%;
+        left: 1%;
+    }
+    p {
+        position: absolute;
+        top: 19.5%;
+        left: 11%;
+        padding-left: 4%;
+        font-size: 18px;
+        border-left: 1px solid #fff;
+        color: #fff;
+    }
+}
+
+//重置样式
+.weui-form-preview__hd .weui-form-preview__value {
+    font-style: normal;
+    font-size: 1em;
+}
+
+.weui-form-preview__hd:after {
+    left: 0;
+}
+
+.top_border_none:before {
+    border-top: none;
+}
+
+.bottom_border_none:after {
+    border-bottom: none;
+}
+
+.index {
+    .weui-cell:before {
+        border-top: none;
+    }
+}
+
+//该样式在超过3个btn时需注释掉
+.weui-grid:after {
+    border-bottom: none;
+}
+
+//板块样式
+.white-box {
+    background-color: #fff;
+    padding: 0;
+    .right_none:before {
+        border-right: none;
+    }
+}
+
+.page__hd {
+    height: 180px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.head-img {
+    height: 180px;
+    width: 130%;
+    margin-left: -15%;
+}
+
+.avatar {
+    height: 1.7rem;
+    width: 1.7rem;
+    border: .5px solid #ddd;
+    border-radius: 50%;
+}
+
+.avatar-cell {
+    margin-top: -.5rem;
+    margin-bottom: $box-margin;
+    padding: 5px 15px;
+    position: relative;
+    p {
+        margin: 0 .5rem;
+        font-size: .85rem;
+    }
+    .weui-cell__ft {
+        position: absolute;
+        right: 7.7%;
+    }
+}
+
+.ctnt-cell {
+    position: relative;
+    margin-top: $box-margin;
+    .weui-cell__ft {
+        position: absolute;
+        right: 5%;
+    }
+    .article {
+        position: absolute;
+        right: 7%;
+        color: #bdbdbd;
+    }
+    //样式重置
+}
+
+.ctnt-panel {
+    position: relative;
+    margin-top: $box-margin;
+    padding: 0;
+    .warn {
+        color: #E64340
+    }
+    .alert {
+        color: #f9a825;
+    }
+}
+
+.me_box {
+    min-height: 200px;
+    .me_avatar {
+        border-radius: 100%;
+        height: 5.3rem;
+        width: 5.3rem;
+    }
+    .avatar_box {
+        text-align: center;
+        width: 100%;
+        padding-top: 7%;
+    }
+    .avatar_text {
+        width: 100%;
+        text-align: center;
+        padding-top: 4%;
+        font-size: 17px;
+        color: #000000;
+        letter-spacing: 0;
+    }
+    .gray {
+        color: #bdbdbd;
+    }
+    .apply {
+        text-align: center;
+        padding: 3% 0;
+        width: 88%;
+        margin: 0 6%;
+        margin-top: 55%;
+        display: block;
+        color: white;
+        background-color: #E64340;
+        border: 1px solid #E64340;
+        border-radius: 6px;
+        font-size: 15px;
+    }
+}
+
+//帮助页面
+.help_box {
+    min-height: 300px;
+    h3 {
+        text-align: center;
+        font-size: 23px;
+    }
+    p {
+        color: #616161;
+        font-size: .9rem;
+        line-height: 1.8rem;
+    }
+}
+
+//公告页面
+.notice_title {
+    text-align: center;
+    .warn {
+        color: #E64340;
+    }
+    .gray {
+        color: #bdbdbd;
+    }
+    .warn_title {
+        font-size: 18px;
+    }
+    .alertBox {
+        display: none;
+        .weui-cell {
+            padding: 5px 15px 3px;
+        }
+        .weui-cell__bd p {
+            float: left;
+        }
+    }
+}
+
+.notice_ctnt {
+    .warn {
+        color: #E64340;
+    }
+    .alert {
+        color: #f9a825;
+    }
+}
