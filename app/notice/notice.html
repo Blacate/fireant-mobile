@@ -2,54 +2,23 @@
     <img src="../image/back2.png" alt="#" onclick="window.location.href = '#/'">
     <p>我的公告</p>
 </div>
-<div class="white_bgc item_shaow border_raduis list_item notice_title" id="notice_title">
-    <p class="warn warn_title">您已违规2次</p>
+<div class="white_bgc item_shaow border_raduis list_item notice_title" id="notice_title" ng-show="vm.violation.display" ng-click="vm.showDetail()">
+    <p class="warn warn_title">您已违规{{vm.violation.times}}次</p>
     <p class="gray">违规3次将在2星期内无法预约</p>
-    <div class="alertBox" id="alertBox">
-        <div class="weui-cell ">
+    <div class="alertBox" id="alertBox" ng-show="vm.violation.detail">
+        <div class="weui-cell" ng-repeat="record in vm.violation.records">
             <div class="weui-cell__bd">
-                <p class="warn">预约超过1小时</p>
+                <p class="warn">{{record.reason}}</p>
             </div>
-            <div class="weui-cell__ft">2017-02-27 19:47</div>
-        </div>
-        <div class="weui-cell ">
-            <div class="weui-cell__bd">
-                <p class="warn">预约超过1小时</p>
-            </div>
-            <div class="weui-cell__ft">2017-02-27 19:47</div>
+            <div class="weui-cell__ft">{{record.createTime | date:'yyyy-MM-dd HH:mm'}}</div>
         </div>
     </div>
-
 </div>
 <div class="white_bgc item_shaow border_raduis list_item notice_ctnt">
-    <div class="weui-cell ">
+    <div class="weui-cell " ng-repeat="record in vm.use.records">
         <div class="weui-cell__bd">
-            <p class="warn">预约超过1小时</p>
+            <p ng-class="{'warn':record.isWarn,'alert':record.isAlert}">{{record.ctnt}}</p>
         </div>
-        <div class="weui-cell__ft">2017-02-27 19:47</div>
-    </div>
-    <div class="weui-cell ">
-        <div class="weui-cell__bd">
-            <p>正常使用3小时</p>
-        </div>
-        <div class="weui-cell__ft">2017-02-27 19:47</div>
-    </div>
-    <div class="weui-cell ">
-        <div class="weui-cell__bd">
-            <p class="warn">暂离超时1小时</p>
-        </div>
-        <div class="weui-cell__ft">2017-02-27 19:47</div>
-    </div>
-    <div class="weui-cell ">
-        <div class="weui-cell__bd">
-            <p class="alert">暂离1小时</p>
-        </div>
-        <div class="weui-cell__ft">2017-02-27 19:47</div>
-    </div>
-    <div class="weui-cell ">
-        <div class="weui-cell__bd">
-            <p>正常使用1小时</p>
-        </div>
-        <div class="weui-cell__ft">2017-02-27 19:47</div>
+        <div class="weui-cell__ft">{{record.createTime | date:'yyyy-MM-dd HH:mm'}}</div>
     </div>
 </div>

@@ -4,17 +4,17 @@
     </div>
     <div class="weui-cell weui-cell_access js_item white-box avatar-cell" onclick="window.location.href = '#/myInfo'">
         <img src="../image/avatar.jpg" alt="#" class="avatar">
-        <p>小美</p>
+        <p>{{vm.user.name}}</p>
         <div class="weui-cell__ft"></div>
     </div>
     <div class="weui-grids white_bgc item_shaow border_raduis list_item white-box">
-        <a href="javascript:;" class="weui-grid">
+        <a class="weui-grid">
             <div class="weui-grid__icon">
                 <img src="../image/mysite.png" alt="">
             </div>
             <p class="weui-grid__label">线上预约</p>
         </a>
-        <a href="javascript:;" class="weui-grid">
+        <a class="weui-grid">
             <div class="weui-grid__icon">
                 <img src="../image/library.png" alt="">
             </div>
@@ -31,61 +31,25 @@
         <h4>我的公告</h4>
         <div class="weui-cell__ft"></div>
         <div class="article">
-            <p>3天前违规1次<span class="weui-badge weui-badge_dot" style="margin-left: 5px;margin-right: 5px;"></span></p>
+            <p>{{vm.violation.last}}<span class="weui-badge weui-badge_dot" style="margin-left: 5px;margin-right: 5px;" ng-show="vm.violation.new"></span></p>
         </div>
     </div>
-    <div class="weui-form-preview white_bgc item_shaow border_raduis list_item ctnt-panel top_border_none bottom_border_none">
+    <div class="weui-form-preview white_bgc item_shaow border_raduis list_item ctnt-panel top_border_none bottom_border_none" ng-show="vm.record.display">
         <div class="weui-form-preview__hd">
             <div class="weui-form-preview__item">
-                <label class="weui-form-preview__label">预约座位</label>
-                <em class="weui-form-preview__value">一楼试验阅览室1057号座位</em>
+                <label class="weui-form-preview__label" ng-bind="vm.record.seatTit"></label>
+                <em class="weui-form-preview__value" ng-bind="vm.record.seatCtnt"></em>
             </div>
         </div>
         <div class="weui-form-preview__bd">
             <div class="weui-form-preview__item">
-                <label class="weui-form-preview__label">预约时间</label>
-                <span class="weui-form-preview__value">10分钟前</span>
+                <label class="weui-form-preview__label" ng-bind="vm.record.timeTit"></label>
+                <span class="weui-form-preview__value" ng-bind="vm.record.timeCtnt"></span>
             </div>
         </div>
         <div class="weui-form-preview__ft">
-            <a class="weui-form-preview__btn weui-form-preview__btn_primary warn" href="javascript:">取消预约</a>
-            <a class="weui-form-preview__btn weui-form-preview__btn_primary" href="javascript:">确认就座</a>
-        </div>
-    </div>
-    <div class="weui-form-preview white_bgc item_shaow border_raduis list_item ctnt-panel top_border_none bottom_border_none">
-        <div class="weui-form-preview__hd">
-            <div class="weui-form-preview__item">
-                <label class="weui-form-preview__label">我的座位</label>
-                <em class="weui-form-preview__value">一楼试验阅览室1057号座位</em>
-            </div>
-        </div>
-        <div class="weui-form-preview__bd">
-            <div class="weui-form-preview__item">
-                <label class="weui-form-preview__label">在线时长</label>
-                <span class="weui-form-preview__value">2小时</span>
-            </div>
-        </div>
-        <div class="weui-form-preview__ft">
-            <a class="weui-form-preview__btn weui-form-preview__btn_primary alert" href="javascript:">暂离座位</a>
-            <a class="weui-form-preview__btn weui-form-preview__btn_primary" href="javascript:">使用完成</a>
-        </div>
-    </div>
-    <div class="weui-form-preview white_bgc item_shaow border_raduis list_item ctnt-panel top_border_none bottom_border_none">
-        <div class="weui-form-preview__hd">
-            <div class="weui-form-preview__item">
-                <label class="weui-form-preview__label">我的座位</label>
-                <em class="weui-form-preview__value">一楼试验阅览室1057号座位</em>
-            </div>
-        </div>
-        <div class="weui-form-preview__bd">
-            <div class="weui-form-preview__item">
-                <label class="weui-form-preview__label">已离时长</label>
-                <span class="weui-form-preview__value">30分钟</span>
-            </div>
-        </div>
-        <div class="weui-form-preview__ft">
-            <a class="weui-form-preview__btn weui-form-preview__btn_primary warn" href="javascript:">取消使用</a>
-            <a class="weui-form-preview__btn weui-form-preview__btn_primary" href="javascript:">确认返回</a>
+            <a class="weui-form-preview__btn weui-form-preview__btn_primary" ng-class="{true: 'warn', false: 'alert'}[vm.record.classRls]" 　 ng-bind="vm.record.btnCle"></a>
+            <a class="weui-form-preview__btn weui-form-preview__btn_primary" ng-bind="vm.record.btnSure"></a>
         </div>
     </div>
 </div>
