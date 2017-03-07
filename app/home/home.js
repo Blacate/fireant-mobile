@@ -2,11 +2,11 @@ import './home.html';
 
 class homeCtrl {
     static get $inject() {
-        return ['userService', 'seatService', '$cookies', '$http'];
+        return ['userService', 'seatService', '$cookies', '$http', '$window'];
     }
 
-    constructor(userService, seatService, $cookies, $http) {
-        this.services = { userService, seatService, $cookies, $http };
+    constructor(userService, seatService, $cookies, $http, $window) {
+        this.services = { userService, seatService, $cookies, $http, $window };
         /**
          * user.name: 用户姓名
          */
@@ -165,7 +165,16 @@ class homeCtrl {
      * 判断用户位置并扫描二维码后加载js发送请求
      */
     offlineHold() {
-        console.log('offline hold');
+        var { $window } = this.services;
+
+        $window.wx.scanQRCode({
+            needResult: 0, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
+            scanType: ['qrCode', 'barCode'], // 可以指定扫二维码还是一维码，默认二者都有
+            success: function(res) {
+                var result = res.resultStr; // 当needResult 为 1 时，扫码返回的结果
+                alert(result);
+            }
+        });
     }
 
     /**
