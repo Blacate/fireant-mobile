@@ -8,13 +8,13 @@
         <div class="weui-cell__ft"></div>
     </div>
     <div class="weui-grids white_bgc item_shaow border_raduis list_item white-box">
-        <a class="weui-grid">
+        <a class="weui-grid" href='/#/select'>
             <div class="weui-grid__icon">
                 <img src="../image/mysite.png" alt="">
             </div>
             <p class="weui-grid__label">线上预约</p>
         </a>
-        <a class="weui-grid">
+        <a class="weui-grid" ng-click="vm.offlineHold()">
             <div class="weui-grid__icon">
                 <img src="../image/library.png" alt="">
             </div>
@@ -30,8 +30,8 @@
     <div class="weui-cell weui-cell_access js_item white_bgc item_shaow border_raduis list_item ctnt-cell top_border_none" onclick="window.location.href='#/notice'">
         <h4>我的公告</h4>
         <div class="weui-cell__ft"></div>
-        <div class="article">
-            <p>{{vm.violation.last}}<span class="weui-badge weui-badge_dot" style="margin-left: 5px;margin-right: 5px;" ng-show="vm.violation.new"></span></p>
+        <div class="article" ng-show="vm.violation.new" 　>
+            <p>{{vm.violation.text}}<span class="weui-badge weui-badge_dot" style="margin-left: 5px;margin-right: 5px;"></span></p>
         </div>
     </div>
     <div class="weui-form-preview white_bgc item_shaow border_raduis list_item ctnt-panel top_border_none bottom_border_none" ng-show="vm.record.display">
@@ -48,8 +48,8 @@
             </div>
         </div>
         <div class="weui-form-preview__ft">
-            <a class="weui-form-preview__btn weui-form-preview__btn_primary" ng-class="{true: 'warn', false: 'alert'}[vm.record.classRls]" 　 ng-bind="vm.record.btnCle"></a>
-            <a class="weui-form-preview__btn weui-form-preview__btn_primary" ng-bind="vm.record.btnSure"></a>
+            <a class="weui-form-preview__btn weui-form-preview__btn_primary" ng-class="{true: 'warn', false: 'alert'}[vm.record.classRls]" ng-bind="vm.record.btnCle" ng-click="vm.clcF()"></a>
+            <a class="weui-form-preview__btn weui-form-preview__btn_primary" ng-bind="vm.record.btnSure" ng-click="vm.sureF()"></a>
         </div>
     </div>
 </div>

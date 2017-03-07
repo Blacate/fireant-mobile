@@ -1,0 +1,30 @@
+<div class="nav_title">
+    <img src="../image/back2.png" alt="#" onclick="window.location.href = '#/'">
+    <p>线上预约</p>
+</div>
+<div class="tips-wrapper">
+    <div class='tip'>
+        <span class="seat"></span><span class="text"> 可选</span>
+    </div>
+    <div class='tip'>
+        <span class="seat active"></span><span class="text"> 已选</span>
+    </div>
+    <div class='tip'>
+        <span class="seat taken"></span><span class="text"> 正在使用</span>
+    </div>
+    <div class='tip'>
+        <span class="seat away"></span><span class="text"> 暂离</span>
+    </div>
+    <div class='tip'>
+        <span class="seat booking"></span><span class="text"> 预占中</span>
+    </div>
+</div>
+<div class="canvas">
+    <div class="desk grid" ng-repeat="table in vm.desks" style="{{table.position}}">
+        <span ng-repeat="seat in table.cells" class="seat {{$index | cellPosition}} {{seat.state | cellState}}" ng-click="vm.choose($parent.$index,$index)"></span>
+    </div>
+    <div class="submitSeat">
+        <div class="submitCtnt"></div>
+        <div class="submitBtn" ng-click="vm.submitSeat()">确认选座</div>
+    </div>
+</div>

@@ -1,4 +1,9 @@
 $box-margin:1rem;
+$seat-default:#dedede;
+$seat-active:#478cff;
+$seat-taken:#ff3b32;
+$seat-away:#eb24ff;
+$seat-booking:#1ee56f;
 body {
     background: #F5F5F5;
     font-size: 10px;
@@ -272,5 +277,106 @@ span {
     }
     .alert {
         color: #f9a825;
+    }
+}
+
+//选座界面
+.tips-wrapper {
+    text-align: center;
+}
+
+.tip {
+    height: 12px;
+    display: inline-block;
+    vertical-align: center;
+    margin-right: 5px;
+    .text {
+        font-size: 10px;
+        line-height: 12px;
+        display: inline-block;
+    }
+    .seat {
+        margin-right: 2px;
+        vertical-align: -2px;
+    }
+}
+
+.seat {
+    display: inline-block;
+    box-sizing: border-box;
+    width: 12px;
+    height: 12px;
+    border-radius: 4px;
+    background: $seat-default;
+}
+
+.seat.active {
+    background: $seat-active;
+}
+
+.seat.taken {
+    background: $seat-taken;
+}
+
+.seat.away {
+    background: $seat-away;
+}
+
+.seat.booking {
+    background: $seat-booking;
+}
+
+.canvas {
+    background: white;
+    width: 100%;
+    overflow-x: auto;
+    position: relative;
+    height: 200px;
+}
+
+.desk {
+    position: absolute;
+    display: inline-block;
+    box-sizing: border-box;
+    width: 18px;
+    height: 35px;
+    border-radius: 3px;
+    background: #ffbc6f;
+    .seat {
+        position: absolute;
+    }
+    .seat.p1 {
+        top: 2px;
+        left: -15px;
+    }
+    .seat.p2 {
+        bottom: 2px;
+        left: -15px;
+    }
+    .seat.p3 {
+        top: 2px;
+        right: -15px;
+    }
+    .seat.p4 {
+        right: -15px;
+        bottom: 2px;
+    }
+}
+
+.submitSeat {
+    height: 100px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    .submitCtnt {
+        height: 40px;
+    }
+    .submitBtn {
+        height: 60px;
+        color: white;
+        text-align: center;
+        font-size: 18px;
+        line-height: 60px;
+        background-color: blue;
     }
 }
