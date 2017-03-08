@@ -29,9 +29,9 @@ class homeCtrl {
             text: '您有新的违规记录'
         }
 
-        // this.login('20141344051', 'duohuo').getInfo();
+        this.login('20141344051', 'duohuo').getInfo();
         // this.login('20141305073', '20141305073').getInfo();
-        this.getInfo();
+        // this.getInfo();
     }
 
     /**
