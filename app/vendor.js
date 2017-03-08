@@ -1,8 +1,11 @@
 import 'weui/dist/style/weui.min.css';
 import 'es5-shim/es5-shim';
 import 'es5-shim/es5-sham';
+import 'sweetalert/dist/sweetalert.css'
+import 'iscroll/build/iscroll-zoom.js'
 import 'script!html5shiv/dist/html5shiv.min';
 import 'script!angular/angular.min';
 import 'script!angular-route/angular-route.min';
 import 'script!angular-cookies/angular-cookies.min';
 import 'script!angular-resource/angular-resource.min';
+import 'script!sweetalert/dist/sweetalert.min';

@@ -7,7 +7,7 @@
         <img class="me_avatar" src="../image/avatar.jpg"></img>
     </div>
     <div class="avatar_text" ng-bind="vm.user.name"></div>
-    <div class="avatar_text gray">已学习时长：<span ng-bind="vm.user.time"></span></div>
+    <div class="avatar_text gray">已学习时长：<span ng-bind="vm.user.time | duration"></span></div>
     <div class="apply" ng-click="vm.logout()">
         退出登录
     </div>

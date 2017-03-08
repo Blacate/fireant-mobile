@@ -17,7 +17,7 @@
 <div class="white_bgc item_shaow border_raduis list_item notice_ctnt">
     <div class="weui-cell " ng-repeat="record in vm.use.records">
         <div class="weui-cell__bd">
-            <p ng-class="{'warn':record.isWarn,'alert':record.isAlert}">{{record.ctnt}}</p>
+            <p class="{{record.class}}">{{record.ctnt}}</p>
         </div>
         <div class="weui-cell__ft">{{record.createTime | date:'yyyy-MM-dd HH:mm'}}</div>
     </div>

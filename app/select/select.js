@@ -1,9 +1,5 @@
 import './select.html';
-
-
-
-
-
+import Util from '../utils';
 
 /**
  * this.desks = [{
@@ -26,20 +22,26 @@ class selectCtrl {
         var { roomService } = this.services;
         roomService.deskDetail(1000)
             .success(d => {
-                for (let desk of d.data) {
-                    let _desk = {};
-                    _desk.cells = [];
-                    let _left = (desk.y - 1) * 60 + 25;
-                    let _top = (desk.x - 1) * 50 + 15;
-                    _desk.position = `left:${_left}px;top:${_top}px;`;
-                    for (let seat of desk.seats) {
-                        let _seat = {};
-                        _seat.state = seat.state;
-                        _seat.id = seat.seatId;
-                        _desk.cells.push(_seat);
+                if (d.success) {
+                    for (let desk of d.data) {
+                        let _desk = {};
+                        _desk.cells = [];
+                        let _left = (desk.y - 1) * 60 + 25;
+                        let _top = (desk.x - 1) * 50 + 15;
+                        _desk.position = `left:${_left}px;top:${_top}px;`;
+                        for (let seat of desk.seats) {
+                            let _seat = {};
+                            _seat.state = seat.state;
+                            _seat.id = seat.seatId;
+                            _desk.cells.push(_seat);
+                        }
+                        this.desks.push(_desk);
                     }
-                    this.desks.push(_desk);
-                }
+                } else
+                    Util.handleCommonError();
+            })
+            .error(e => {
+                Util.handleUnknowError();
             })
         return this;
     }
@@ -64,9 +66,12 @@ class selectCtrl {
             seatService.order(this.desks[seat[0]].cells[seat[1]].id)
                 .success(d => {
                     if (d.success)
-                        console.log('success')
+                        Util.handleCommonConfirm('预约成功，快点来吧！', 0);
                     else
-                        console.log('failed')
+                        Util.handleCommonError();
+                })
+                .error(e => {
+                    Util.handleUnknowError();
                 })
         }
     }

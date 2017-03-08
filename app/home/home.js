@@ -1,4 +1,5 @@
 import './home.html';
+import Util from '../utils';
 
 class homeCtrl {
     static get $inject() {
@@ -29,8 +30,8 @@ class homeCtrl {
         }
 
         // this.login('20141344051', 'duohuo').getInfo();
-        this.login('20141305073', '20141305073').getInfo();
-        // this.getInfo();
+        // this.login('20141305073', '20141305073').getInfo();
+        this.getInfo();
     }
 
     /**
@@ -42,12 +43,14 @@ class homeCtrl {
         var { userService } = this.services;
         userService.login(id, passwd)
             .success(d => {
-                if (d.success) {
-                    this.setcookies(d.data)
-                }
+                if (d.success)
+                    this.setcookies(d.data);
+                else
+                    Util.handleCommonError(d.data.stateInfo);
+
             })
             .error(e => {
-                console.log(e);
+                Util.handleUnknowError();
             })
         return this;
     }
@@ -60,6 +63,10 @@ class homeCtrl {
      */
     setcookies(data) {
         var { $cookies } = this.services;
+        if ($cookies.getAll()) {
+            $cookies.remove('userId');
+            $cookies.remove('token');
+        }
         let expireDate = new Date();
         expireDate.setDate(expireDate.getDate() + 1);
         $cookies.put('userId', data.userId, { 'expires': expireDate });
@@ -74,12 +81,13 @@ class homeCtrl {
         var { userService } = this.services;
         userService.info()
             .success(d => {
-                if (d.success) {
+                if (d.success)
                     this.renderPage(d.data)
-                }
+                else
+                    Util.handleCommonError(d.data.stateInfo);
             })
             .error(e => {
-                console.log(e);
+                Util.handleUnknowError();
             })
         return this;
     }
@@ -165,16 +173,19 @@ class homeCtrl {
      * 判断用户位置并扫描二维码后加载js发送请求
      */
     offlineHold() {
-        var { $window } = this.services;
+        return this.scan();
+    }
 
-        $window.wx.scanQRCode({
-            needResult: 0, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
-            scanType: ['qrCode', 'barCode'], // 可以指定扫二维码还是一维码，默认二者都有
-            success: function(res) {
-                var result = res.resultStr; // 当needResult 为 1 时，扫码返回的结果
-                alert(result);
-            }
-        });
+    scan() {
+        var { $window } = this.services;
+        window.location.href = '/#/scan?seatId=1000'
+            // $window.wx.scanQRCode({
+            //     needResult: 0, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
+            //     scanType: ['qrCode', 'barCode'], // 可以指定扫二维码还是一维码，默认二者都有
+            //     success: function(res) {
+            //         var result = res.resultStr; // 当needResult 为 1 时，扫码返回的结果
+            //     }
+            // });
     }
 
     /**
@@ -204,10 +215,13 @@ class homeCtrl {
         var { seatService } = this.services;
         seatService.cancel(this.seatId)
             .success(d => {
-                console.log(d)
+                if (d.success)
+                    Util.handleCommonConfirm('预约取消成功，再见。', 1);
+                else
+                    Util.handleCommonError(d.data.stateInfo);
             })
             .error(e => {
-                console.log(e);
+                Util.handleUnknowError();
             })
         return this;
     }
@@ -219,10 +233,13 @@ class homeCtrl {
         var { seatService } = this.services;
         seatService.temp(this.seatId)
             .success(d => {
-                console.log(d)
+                if (d.success)
+                    Util.handleCommonConfirm('你有10min，记得回来哦。', 1);
+                else
+                    Util.handleCommonError(d.data.stateInfo);
             })
             .error(e => {
-                console.log(e);
+                Util.handleUnknowError();
             })
         return this;
     }
@@ -234,10 +251,13 @@ class homeCtrl {
         var { seatService } = this.services;
         seatService.release(this.seatId)
             .success(d => {
-                console.log(d)
+                if (d.success)
+                    Util.handleCommonConfirm('离座成功，期待你的下次使用。', 1);
+                else
+                    Util.handleCommonError(d.data.stateInfo);
             })
             .error(e => {
-                console.log(e);
+                Util.handleUnknowError();
             })
         return this;
     }
@@ -251,31 +271,15 @@ class homeCtrl {
     sureF() {
         switch (this.record.sureState) {
             case 'useSeat':
-                this.useSeat();
+                this.scan();
                 break;
             case 'finishUse':
                 this.finishUse();
                 break;
             case 'back':
-                this.userSeat();
+                this.scan();
                 break;
         }
-    }
-
-    /**
-     * 使用座位函数
-     *  for 确认就座＆返回就座
-     */
-    useSeat() {
-        var { seatService } = this.services;
-        seatService.hold(this.seatId)
-            .success(d => {
-                console.log(d);
-            })
-            .error(e => {
-                console.log(e);
-            })
-        return this;
     }
 
     /**
@@ -285,10 +289,13 @@ class homeCtrl {
         var { seatService } = this.services;
         seatService.release(this.seatId)
             .success(d => {
-                console.log(d)
+                if (d.success)
+                    Util.handleCommonConfirm('离座成功，期待你的下次使用。', 1);
+                else
+                    Util.handleCommonError(d.data.stateInfo);
             })
             .error(e => {
-                console.log(e);
+                Util.handleUnknowError();
             })
         return this;
     }

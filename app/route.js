@@ -3,13 +3,15 @@ import notice from './notice/notice.js';
 import help from './help/help.js';
 import myInfo from './myInfo/myInfo.js';
 import select from './select/select.js';
+import scan from './scan/scan.js';
 
 const routeConfig = [
     ['/', Home],
     ['/notice', notice],
     ['/help', help],
     ['/myInfo', myInfo],
-    ['/select', select]
+    ['/select', select],
+    ['/scan', scan]
 ];
 
 const config = /* @ngInject */ function($routeProvider) {
@@ -17,7 +19,7 @@ const config = /* @ngInject */ function($routeProvider) {
         $routeProvider.when(config[0], config[1]);
     });
 
-    $routeProvider.otherwise({ redirectTo: '/404' });
+    $routeProvider.otherwise({ redirectTo: '/' });
 };
 
 export default config;

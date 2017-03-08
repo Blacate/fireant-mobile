@@ -5,7 +5,7 @@
  *      个人信息: info()
  *      违规记录：violation()
  *      使用记录：note()
- * aeatService:
+ * seatService:
  *      预定：order(seatId)  seatId:座位id
  *      取消预约：cancel(seatId)  seatId:座位id
  *      入座：hold(seatId)  seatId:座位id

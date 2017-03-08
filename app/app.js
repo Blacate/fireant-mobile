@@ -44,6 +44,17 @@ angular.module('fireant', [
 
             }
         })
+    .filter('duration',
+        () => {
+            return time => {
+                if (time < 60000)
+                    return '0m';
+                else if (time < 60000 * 60)
+                    return `${parseInt(time/60000)}m`
+                else
+                    return `${parseInt(time / 3600000)}h${parseInt(time % 3600000 / 60000)}m`
+            }
+        })
     .config(Route);
 
 /**

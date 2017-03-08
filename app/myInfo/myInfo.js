@@ -1,11 +1,12 @@
 import './myInfo.html';
+import Util from '../utils';
 
 class myInfoCtrl {
     static get $inject() {
-        return ['userService'];
+        return ['userService', '$cookies'];
     }
-    constructor(userService) {
-        this.services = { userService };
+    constructor(userService, $cookies) {
+        this.services = { userService, $cookies };
         this.user = {
             time: '0h'
         }
@@ -16,20 +17,31 @@ class myInfoCtrl {
         var { userService } = this.services;
         userService.info()
             .success(d => {
-                if (d.success) {
+                if (d.success)
                     this.renderPage(d.data)
-                }
+                else
+                    Util.handleCommonError(d.data.stateInfo);
             })
             .error(e => {
-                console.log(e);
+                Util.handleUnknowError();
             })
         return this;
     }
     _logout() {
-        var { userService } = this.services;
+        var { userService, $cookies } = this.services;
         userService.logout()
             .success(d => {
-
+                if (d.success) {
+                    if ($cookies.getAll()) {
+                        $cookies.remove('userId');
+                        $cookies.remove('token');
+                        Util.handleCommonConfirm('退出登录成功。', 0);
+                    }
+                } else
+                    Util.handleCommonError(d.data.stateInfo);
+            })
+            .error(e => {
+                Util.handleUnknowError();
             })
         return this;
     }
@@ -39,7 +51,7 @@ class myInfoCtrl {
 
     renderPage(data) {
         this.user.name = data.user.name;
-        // this.user.time = data.user.time;
+        this.user.time = data.user.studyTime;
     }
 }
 
