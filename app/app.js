@@ -8,16 +8,27 @@ angular.module('fireant', [
         'dataService',
         'ngCookies',
     ])
-    .run(($http, $window) => {
+    .run(($http, $window, $location) => {
         //配置微信JSsdkconfig
-        $window.wx.config({
-            'debug': true,
-            'nonceStr': 'lugiu1izqmgp8sh',
-            'timestamp': '1488904606',
-            'appid': 'wx2001ad7f67ba9232',
-            'signature': '4a6752f7992c8d730f681498de7eabf3550e9ad1',
-            'url': 'http://fireant.blacat.top/#/'
-        })
+        let _url = `${$location.protocol()}://${$location.host()}`;
+        let sign = {};
+        $http.get('/api/system/signature', { url: _url })
+            .success(d => {
+                if (d.success) {
+                    $window.wx.config({
+                        'debug': true,
+                        'nonceStr': d.data.noncestr,
+                        'timestamp': d.data.timestamp,
+                        'appid': 'wxcbb0bc12953e0a26',
+                        'signature': d.data.signature,
+                        'url': _url
+                    })
+                }
+            })
+            .error(e => {
+                alert('error');
+            })
+
     })
     .filter('cellState',
         () => {
