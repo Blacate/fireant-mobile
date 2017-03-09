@@ -6,8 +6,6 @@ class selectCtrl {
         return ['roomService', 'seatService']
     }
     constructor(roomService, seatService) {
-        let canvas = document.getElementsByClassName('canvas');
-        console.log(canvas);
         this.chooseSeat;
         this.services = { roomService, seatService };
         this.desks = [];
