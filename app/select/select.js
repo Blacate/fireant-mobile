@@ -1,21 +1,24 @@
 import './select.html';
 import Util from '../utils';
 
-/**
- * this.desks = [{
- *  position: "left:1px;top:1px;"
- *  
- * }]
- */
 class selectCtrl {
     static get $inject() {
         return ['roomService', 'seatService']
     }
     constructor(roomService, seatService) {
+        let canvas = document.getElementsByClassName('canvas');
+        console.log(canvas);
         this.chooseSeat;
         this.services = { roomService, seatService };
         this.desks = [];
+        this.roomId;
         this.renderDesk();
+    }
+
+    chooseRoom() {
+
+        //拿到房间的Id并赋值给 this.roomId
+
     }
 
     renderDesk() {

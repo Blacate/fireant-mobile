@@ -14,7 +14,6 @@ angular.module('fireant', [
         let sign = {};
         getConfig(_url)
             .then(d => {
-                console.log(_url);
                 $window.wx.config({
                     // 'debug': true,
                     'nonceStr': d.noncestr,

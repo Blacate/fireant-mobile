@@ -23,8 +23,8 @@
     <div class="desk grid" ng-repeat="table in vm.desks" style="{{table.position}}">
         <span ng-repeat="seat in table.cells" class="seat {{$index | cellPosition}} {{seat.state | cellState}}" ng-click="vm.choose($parent.$index,$index)"></span>
     </div>
-    <div class="submitSeat">
-        <div class="submitCtnt"></div>
-        <div class="submitBtn" ng-click="vm.submitSeat()">确认选座</div>
-    </div>
+</div>
+<div class="submitSeat">
+    <div class="submitCtnt"></div>
+    <div class="submitBtn" ng-click="vm.submitSeat()">确认选座</div>
 </div>
