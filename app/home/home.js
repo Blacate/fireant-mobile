@@ -28,51 +28,10 @@ class homeCtrl {
             new: false,
             text: '您有新的违规记录'
         }
-
-        this.login('20141344051', 'duohuo').getInfo();
-        // this.login('20141305073', '20141305073').getInfo();
-        // this.getInfo();
+        this.getInfo();
     }
 
-    /**
-     * 登录
-     * @param {string} id　学号 
-     * @param {string} passwd　密码 
-     */
-    login(id, passwd) {
-        var { userService } = this.services;
-        userService.login(id, passwd)
-            .success(d => {
-                if (d.success)
-                    this.setcookies(d.data);
-                else
-                    Util.handleCommonError(d.data.stateInfo);
 
-            })
-            .error(e => {
-                Util.handleUnknowError();
-            })
-        return this;
-    }
-
-    /**
-     * 设置cookies
-     * @param {obj} data　 
-     *      data.userId: 用户id
-     *      data.token: token
-     */
-    setcookies(data) {
-        var { $cookies } = this.services;
-        if ($cookies.getAll()) {
-            $cookies.remove('userId');
-            $cookies.remove('token');
-        }
-        let expireDate = new Date();
-        expireDate.setDate(expireDate.getDate() + 1);
-        $cookies.put('userId', data.userId, { 'expires': expireDate });
-        $cookies.put('token', data.token, { 'expires': expireDate });
-        return this;
-    }
 
     /**
      * 获取用户详细信息，并调用renderPage(data)处理数据
@@ -84,7 +43,7 @@ class homeCtrl {
                 if (d.success)
                     this.renderPage(d.data)
                 else
-                    Util.handleCommonError(d.data.stateInfo);
+                    Util.handleCommonError(d.error);
             })
             .error(e => {
                 Util.handleUnknowError();
@@ -178,14 +137,16 @@ class homeCtrl {
 
     scan() {
         var { $window } = this.services;
-        window.location.href = '/#/scan?seatId=1000'
-            // $window.wx.scanQRCode({
-            //     needResult: 0, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
-            //     scanType: ['qrCode', 'barCode'], // 可以指定扫二维码还是一维码，默认二者都有
-            //     success: function(res) {
-            //         var result = res.resultStr; // 当needResult 为 1 时，扫码返回的结果
-            //     }
-            // });
+        // window.location.href = '/#/scan?seatId=1000'
+        $window.wx.scanQRCode({
+            needResult: 1, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
+            scanType: ['qrCode', 'barCode'], // 可以指定扫二维码还是一维码，默认二者都有
+            success: function(res) {
+                var result = res.resultStr; // 当needResult 为 1 时，扫码返回的结果
+                // alert(result);
+                console.log(result);
+            }
+        });
     }
 
     /**

@@ -4,6 +4,7 @@ import help from './help/help.js';
 import myInfo from './myInfo/myInfo.js';
 import select from './select/select.js';
 import scan from './scan/scan.js';
+import login from './login/login.js';
 
 const routeConfig = [
     ['/', Home],
@@ -11,7 +12,8 @@ const routeConfig = [
     ['/help', help],
     ['/myInfo', myInfo],
     ['/select', select],
-    ['/scan', scan]
+    ['/scan', scan],
+    ['/login', login],
 ];
 
 const config = /* @ngInject */ function($routeProvider) {

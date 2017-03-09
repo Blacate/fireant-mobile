@@ -10,25 +10,73 @@ angular.module('fireant', [
     ])
     .run(($http, $window, $location) => {
         //配置微信JSsdkconfig
-        let _url = `${$location.protocol()}://${$location.host()}`;
+        let _url = `${$location.protocol()}://${$location.host()}/`;
         let sign = {};
-        $http.get('/api/system/signature', { url: _url })
-            .success(d => {
-                if (d.success) {
-                    $window.wx.config({
-                        'debug': true,
-                        'nonceStr': d.data.noncestr,
-                        'timestamp': d.data.timestamp,
-                        'appid': 'wxcbb0bc12953e0a26',
-                        'signature': d.data.signature,
-                        'url': _url
-                    })
-                }
+        getConfig(_url)
+            .then(d => {
+                console.log(_url);
+                $window.wx.config({
+                    // 'debug': true,
+                    'nonceStr': d.noncestr,
+                    'timestamp': d.timestamp,
+                    'appId': d.appid,
+                    'signature': d.signature,
+                    'jsApiList': [
+                        'scanQRCode'
+                    ]
+                })
+
             })
-            .error(e => {
-                alert('error');
+            .catch(e => {
+                console.log(e)
             })
 
+        $window.wx.error(res => {
+            refresh()
+                .then(d => {
+                    return getConfig(_url)
+                })
+                .then(d => {
+                    console.log(_url);
+                    $window.wx.config({
+                        'debug': true,
+                        'nonceStr': d.noncestr,
+                        'timestamp': d.timestamp,
+                        'appId': d.appid,
+                        'signature': d.signature,
+                        'jsApiList': [
+                            'scanQRCode'
+                        ]
+                    })
+                })
+                .catch(e => {
+                    console.log(e)
+                })
+        })
+
+
+
+
+        function getConfig(url) {
+            return $http.get(`/api/system/signature?url=${url}`)
+                .then(d => {
+                    return d.data.data;
+                })
+                .catch(e => e)
+        }
+
+        function refresh() {
+            return $http.post('/api/system/refresh')
+                .then(d => {
+                    if (d.data.success)
+                        return true;
+                    else
+                        return false;
+                })
+                .catch(e => {
+                    return false;
+                })
+        }
     })
     .filter('cellState',
         () => {

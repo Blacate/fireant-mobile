@@ -38,24 +38,6 @@ class scanCtrl {
                 Util.handleUnknowError();
             })
         return this;
-        // var { userService } = this.services;
-        // userService.info()
-        //     .then(d => {
-        //         if (d.data.success) {
-        //             console.log(d)
-        //             this.user.state = d.data.data.user.state;
-        //             if (d.data.data.user.state) {
-        //                 this.seat.user = d.data.data.seat.seatId;
-        //                 this.seat.state = d.data.data.seat.state;
-        //             }
-        //         } else
-        //             Util.handleCommonError(d.data.data.stateInfo);
-        //     })
-        //     .catch(e => {
-        //         console.log(e)
-        //         Util.handleUnknowError();
-        //     })
-        // return this;
     }
 
     handleSeat() {
