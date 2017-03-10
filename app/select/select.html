@@ -1,7 +1,8 @@
-<div class="nav_title">
+<div class="nav_title select_nav">
     <img src="../image/back2.png" alt="#" onclick="window.location.href = '#/'">
     <p>线上预约</p>
 </div>
+<div class="chooseRoom">for chooseRoom btn</div>
 <div class="tips-wrapper">
     <div class='tip'>
         <span class="seat"></span><span class="text"> 可选</span>
@@ -19,9 +20,11 @@
         <span class="seat booking"></span><span class="text"> 预占中</span>
     </div>
 </div>
-<div class="canvas">
-    <div class="desk grid" ng-repeat="table in vm.desks" style="{{table.position}}">
-        <span ng-repeat="seat in table.cells" class="seat {{$index | cellPosition}} {{seat.state | cellState}}" ng-click="vm.choose($parent.$index,$index)"></span>
+<div class="canvas-wrapper">
+    <div class="canvas">
+        <div class="desk grid" ng-repeat="table in vm.desks" style="{{table.position}}">
+            <span ng-repeat="seat in table.cells" class="seat {{$index | cellPosition}} {{seat.state | cellState}}" ng-click="vm.choose($parent.$index,$index)"></span>
+        </div>
     </div>
 </div>
 <div class="submitSeat">

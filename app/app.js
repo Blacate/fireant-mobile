@@ -15,7 +15,6 @@ angular.module('fireant', [
         getConfig(_url)
             .then(d => {
                 $window.wx.config({
-                    // 'debug': true,
                     'nonceStr': d.noncestr,
                     'timestamp': d.timestamp,
                     'appId': d.appid,
@@ -24,7 +23,6 @@ angular.module('fireant', [
                         'scanQRCode'
                     ]
                 })
-
             })
             .catch(e => {
                 console.log(e)
@@ -36,9 +34,7 @@ angular.module('fireant', [
                     return getConfig(_url)
                 })
                 .then(d => {
-                    console.log(_url);
                     $window.wx.config({
-                        'debug': true,
                         'nonceStr': d.noncestr,
                         'timestamp': d.timestamp,
                         'appId': d.appid,
