@@ -9,3 +9,5 @@ import 'script!angular-route/angular-route.min';
 import 'script!angular-cookies/angular-cookies.min';
 import 'script!angular-resource/angular-resource.min';
 import 'script!sweetalert/dist/sweetalert.min';
+import 'script!zepto/zepto.min.js';
+import 'script!weui.js/dist/weui.min.js';
