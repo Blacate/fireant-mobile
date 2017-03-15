@@ -15,6 +15,13 @@ class Util {
             text: txt
         })
     }
+    static handleCommonWarning(txt) {
+        swal({
+            type: 'warning',
+            title: 'Warn!',
+            text: txt
+        })
+    }
     static handleCommonConfirm(txt, reload) {
         swal({
             type: 'success',

@@ -3,14 +3,108 @@ import Util from '../utils';
 
 class selectCtrl {
     static get $inject() {
-        return ['roomService', 'seatService']
+        return ['roomService', 'seatService', '$window']
     }
-    constructor(roomService, seatService) {
+    constructor(roomService, seatService, $window) {
         this.chooseSeat;
-        this.services = { roomService, seatService };
+        this.services = { roomService, seatService, $window };
         this.desks = [];
         this.roomId;
         this.renderDesk();
+    }
+
+    picker() {
+        var { $window } = this.services;
+        $window.weui.picker([{
+            label: '1st楼层',
+            value: '一楼的id',
+            children: [{
+                    label: '教室１',
+                    value: '教室１的id',
+                },
+                {
+                    label: 'x2',
+                    value: 'x2',
+                },
+                {
+                    label: 'x3',
+                    value: 'x3',
+                },
+            ]
+        }, {
+            label: '2nd楼层',
+            value: 1,
+            children: [{
+                    label: 'x1',
+                    value: 'x1',
+                },
+                {
+                    label: 'x2',
+                    value: 'x2',
+                },
+                {
+                    label: 'x3',
+                    value: 'x3',
+                },
+            ]
+        }, {
+            label: '3rd楼层',
+            value: 2,
+            children: [{
+                    label: 'x1',
+                    value: 'x1',
+                },
+                {
+                    label: 'x2',
+                    value: 'x2',
+                },
+                {
+                    label: 'x3',
+                    value: 'x3',
+                },
+            ]
+        }, {
+            label: '4th楼层 (disabled)',
+            disabled: true,
+            value: 3,
+            children: [{
+                    label: 'x1',
+                    value: 'x1',
+                },
+                {
+                    label: 'x2',
+                    value: 'x2',
+                },
+                {
+                    label: 'x3',
+                    value: 'x3',
+                },
+            ]
+        }, {
+            label: '5th楼层',
+            value: 4,
+            children: [{
+                    label: 'x1',
+                    value: 'x1',
+                },
+                {
+                    label: 'x2',
+                    value: 'x2',
+                },
+                {
+                    label: 'x3',
+                    value: 'x3',
+                },
+            ]
+        }], {
+            onChange: function(result) {
+                console.log(result);
+            },
+            onConfirm: function(result) {
+                console.log(result);
+                document.getElementById('showPickerText').innerText = result;
+            }
+        });
     }
 
     chooseRoom() {
@@ -46,6 +140,7 @@ class selectCtrl {
             })
         return this;
     }
+
     choose(i, j) {
         if (!this.desks[i].cells[j].state) {
             this.desks[i].cells[j].state = 4;
@@ -60,6 +155,7 @@ class selectCtrl {
         }
         return this;
     }
+
     submitSeat() {
         var { seatService } = this.services;
         if (this.chooseSeat) {
@@ -74,6 +170,8 @@ class selectCtrl {
                 .error(e => {
                     Util.handleUnknowError();
                 })
+        } else {
+            Util.handleCommonWarning('你还没有选择座位。');
         }
     }
 }

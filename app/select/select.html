@@ -2,7 +2,9 @@
     <img src="../image/back2.png" alt="#" onclick="window.location.href = '#/'">
     <p>线上预约</p>
 </div>
-<div class="chooseRoom">for chooseRoom btn</div>
+<div class="chooseRoom">
+    <a href="javascript:;" class="weui-cell weui-cell_access js_item white_bgc item_shaow border_raduis list_item ctnt-cell top_border_none" ng-click="vm.picker()"><span id="showPickerText">已选择：一楼实验教室</span></a>
+</div>
 <div class="tips-wrapper">
     <div class='tip'>
         <span class="seat"></span><span class="text"> 可选</span>
@@ -28,6 +30,8 @@
     </div>
 </div>
 <div class="submitSeat">
-    <div class="submitCtnt"></div>
+    <div class="submitCtnt">
+        <p>您已选择了一楼实验教室６６号座位</p>
+    </div>
     <div class="submitBtn" ng-click="vm.submitSeat()">确认选座</div>
 </div>
