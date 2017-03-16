@@ -36,7 +36,6 @@ class noticeCtrl {
                             } else if (value.reason == 3) {
                                 _violation.reason = '预约取消';
                             }
-                            console.log(value)
                             violation.push(_violation);
                         })
 

@@ -9,3 +9,5 @@ import 'script!angular-route/angular-route.min';
 import 'script!angular-cookies/angular-cookies.min';
 import 'script!angular-resource/angular-resource.min';
 import 'script!sweetalert/dist/sweetalert.min';
+import 'script!iscroll/build/iscroll-zoom';
+import 'script!iscroll/build/iscroll';

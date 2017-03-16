@@ -3,7 +3,7 @@
     <p>线上预约</p>
 </div>
 <div class="chooseRoom">
-    <a href="javascript:;" class="weui-cell weui-cell_access js_item white_bgc item_shaow border_raduis list_item ctnt-cell top_border_none" ng-click="vm.picker()"><span id="showPickerText">已选择：一楼实验教室</span></a>
+    <a href="javascript:;" class="weui-cell weui-cell_access js_item white_bgc item_shaow border_raduis list_item ctnt-cell top_border_none" ng-click="vm.picker()"><span id="showPickerText">已选择：{{vm.chooseRoom.floor}}{{vm.chooseRoom.name}}</span></a>
 </div>
 <div class="tips-wrapper">
     <div class='tip'>
@@ -23,15 +23,15 @@
     </div>
 </div>
 <div class="canvas-wrapper">
-    <div class="canvas">
-        <div class="desk grid" ng-repeat="table in vm.desks" style="{{table.position}}">
-            <span ng-repeat="seat in table.cells" class="seat {{$index | cellPosition}} {{seat.state | cellState}}" ng-click="vm.choose($parent.$index,$index)"></span>
+    <div class="canvas" style="{{vm.canvas}}" id="wrapper" ng-scroll>
+        <div class=" desk grid " ng-repeat="table in vm.desks " style="{{table.position}} ">
+            <span ng-repeat="seat in table.cells " class="seat {{$index | cellPosition}} {{seat.state | cellState}} " ng-click="vm.choose($parent.$index,$index) "></span>
         </div>
     </div>
 </div>
-<div class="submitSeat">
-    <div class="submitCtnt">
-        <p>您已选择了一楼实验教室６６号座位</p>
+<div class="submitSeat ">
+    <div class="submitCtnt ">
+        <p>{{vm.chooseInfo}}</p>
     </div>
-    <div class="submitBtn" ng-click="vm.submitSeat()">确认选座</div>
+    <div class="submitBtn " ng-click="vm.submitSeat() ">确认选座</div>
 </div>
